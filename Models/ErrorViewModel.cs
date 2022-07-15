@@ -1,4 +1,4 @@
-namespace CommunityVolunteering.Models
+namespace CommunityCare.Models
 {
     public class ErrorViewModel
     {

@@ -1,8 +1,8 @@
-﻿using CommunityVolunteering.Models;
+﻿using CommunityCare.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CommunityVolunteering.Controllers
+namespace CommunityCare.Controllers
 {
     public class HomeController : Controller
     {

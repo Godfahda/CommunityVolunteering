@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CommunityCare.Models;
 
-namespace CommunityVolunteering.Data
+namespace CommunityCare.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -9,5 +10,6 @@ namespace CommunityVolunteering.Data
             : base(options)
         {
         }
+        public DbSet<CommunityCare.Models.Schedule>? Schedule { get; set; }
     }
 }

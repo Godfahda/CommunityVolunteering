@@ -1,4 +1,4 @@
-using CommunityVolunteering.Data;
+using CommunityCare.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
