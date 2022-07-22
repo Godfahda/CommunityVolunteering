@@ -7,15 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CommunityCare.Data;
 using CommunityCare.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace CommunityCare.Controllers
 {
-    public class SchedulesController : Controller
+    public class ScheduleController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public SchedulesController(ApplicationDbContext context)
+        public ScheduleController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -28,20 +27,12 @@ namespace CommunityCare.Controllers
                           Problem("Entity set 'ApplicationDbContext.Schedule'  is null.");
         }
 
-        //GET: Schedules/ShowSearchForm
+        // GET: Schedules
         public async Task<IActionResult> ShowSearchForm()
         {
             return _context.Schedule != null ?
                         View() :
                         Problem("Entity set 'ApplicationDbContext.Schedule'  is null.");
-        }
-
-        //POST: Schedules/ShowSearchResults
-        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
-        {
-            return _context.Schedule != null ?
-                         View("Index", await _context.Schedule.Where(x => x.HomeLocation.Contains(SearchPhrase)).ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Schedule'  is null.");
         }
 
 
@@ -64,7 +55,6 @@ namespace CommunityCare.Controllers
         }
 
         // GET: Schedules/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -73,10 +63,9 @@ namespace CommunityCare.Controllers
         // POST: Schedules/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ScheduleTime,HomeLocation")] Schedule schedule)
+        public async Task<IActionResult> Create([Bind("Id,ScheduleTime,HomeLocation,HomeName,VolunteerName,ScheduleNote,ResidentName")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +77,6 @@ namespace CommunityCare.Controllers
         }
 
         // GET: Schedules/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Schedule == null)
@@ -107,10 +95,9 @@ namespace CommunityCare.Controllers
         // POST: Schedules/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ScheduleTime,HomeLocation")] Schedule schedule)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ScheduleTime,HomeLocation,HomeName,VolunteerName,ScheduleNote,ResidentName")] Schedule schedule)
         {
             if (id != schedule.Id)
             {
@@ -141,7 +128,6 @@ namespace CommunityCare.Controllers
         }
 
         // GET: Schedules/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Schedule == null)

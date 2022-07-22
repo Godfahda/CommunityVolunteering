@@ -15,8 +15,12 @@ namespace CommunityCare.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ScheduleTime = table.Column<DateTime>(type: "datetmime", nullable: false),
-                    HomeLocation = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ScheduleTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HomeLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HomeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VolunteerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ScheduleNote = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ResidentName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
