@@ -35,6 +35,13 @@ namespace CommunityCare.Controllers
                         Problem("Entity set 'ApplicationDbContext.Schedule'  is null.");
         }
 
+        //POST: Jokes/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return _context.Schedule != null ?
+                        View("Index" + await _context.Schedule.Where(x => x.HomeName.Contains(SearchPhrase)).ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Schedule'  is null.");
+        }
 
         // GET: Schedules/Details/5
         public async Task<IActionResult> Details(int? id)
